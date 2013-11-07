@@ -1,7 +1,8 @@
 module AppHelpers
 
-  def inBase(title, content)
-    haml :index, :locals => {:title => title, :content => content}
+  def inBase(title, content, extraHeader = nil)
+    datePicker = "$(function() { $('#datepicker').datepicker({ minDate: '-50Y', maxDate: +7, dateFormat: 'yy/mm/dd', showOn: 'button', buttonText: 'Select date', changeYear: true, changeMonth: true });});"
+    haml :index, :locals => {:title => title, :content => content, :extraHeader => extraHeader, :datePicker => datePicker}
   end
 
   def equalPasswords?(password, password_again)
@@ -22,5 +23,20 @@ module AppHelpers
     end
 
     result
+  end
+
+  def valid_date?(dt)
+    begin
+      Date.parse(dt)
+      true
+    rescue => e
+      false
+    end
+  end
+
+  def parseDate(str)
+    result = {}
+    result["year"], result["month"], result["day"] = str.split(/[^\d]+/)
+    Date.new(result["year"].to_i, result["month"].to_i, result["day"].to_i)
   end
 end

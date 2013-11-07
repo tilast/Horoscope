@@ -38,8 +38,12 @@ class App < Sinatra::Base
       if User.first(:login => params[:login])
         flash[:signup_error] = "User already exists"
         redirect "/signup"
+      elsif !valid_date?(params[:birthday])
+        flash[:signup_error] = "Wrong birthday"
+        redirect "/signup"
       elsif equalPasswords?(params[:password], params[:password_again])
-        User.create(:login => params[:login], :password => Digest::MD5.hexdigest(params[:password]), :birthday => Date.strptime(params[:birthday], "%Y/%m/%d"))
+        User.create(:login => params[:login], :password => Digest::MD5.hexdigest(params[:password]), :birthday => parseDate(params[:birthday]), :sign => User.defineSign(params[:birthday]))
+        User.defineSign(params[:birthday])
         session[:login] = params[:login]
         redirect "/"
       else

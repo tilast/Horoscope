@@ -5,7 +5,7 @@ class App < Sinatra::Base
 
   get "/" do
     if session[:login]
-      haml :index, :locals => {:title => "main", :content => "content"}\
+      inBase("main page", "main")
     else
       redirect "/login"
     end
