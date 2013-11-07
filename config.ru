@@ -8,8 +8,11 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/flash'
 require 'haml'
+require 'net/http'
+require "json"
 require "date"
 require "./helpers/AppHelpers"
+
 
 # setup controllers
 require "./app.rb"

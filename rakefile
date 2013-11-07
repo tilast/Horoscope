@@ -1,0 +1,13 @@
+require "./Grabber"
+
+task :default do
+  p "U r welcome!"
+end
+
+task :startGrabber do
+  Grabber.grab
+end
+
+task :testWhen do
+  File.new(Date.new.strftime("%I") + "bla.txt", "w")
+end
