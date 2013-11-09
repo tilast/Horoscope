@@ -15,17 +15,17 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 class Grabber
-  SIGNS = ["aries", "taurus",	"gemini",	"cancer",	"leo", "virgo", "libra", "scorpio",	"sagittarius", "capricorn", "aquarius", "pisces"]
   class << self
     def grab
-      today = DateTime.now
+      now = DateTime.now
+      today  = Date.new(now.year, now.month, now.day)
       date_range = [today, ((today + 1)..(today + 6)).to_a.take_while { |day| !day.monday? }].flatten
 
       date_range.each do |value|
         horoscope = Horoscope.new
         horoscope[:date] = value
 
-        SIGNS.each do |sign|
+        Horoscope::SIGNS.each do |sign|
           resp = Net::HTTP.get_response(URI.parse(URI.escape("http://widgets.fabulously40.com/horoscope.json?sign=" + sign + "&date=" + value.strftime("%Y-%d-%m"))))
           result = JSON.parse(resp.body)
           horoscope[sign.to_sym] = result.empty? ? "Sorry, today we don't have horoscope for you :(" : result["horoscope"]["horoscope"]

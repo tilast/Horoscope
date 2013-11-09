@@ -1,9 +1,17 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (4.0.1)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    atomic (1.1.14)
     backports (3.3.5)
     bcrypt-ruby (3.1.2)
+    chronic (0.10.2)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -55,8 +63,10 @@ GEM
     fastercsv (1.5.5)
     haml (4.0.3)
       tilt
+    i18n (0.6.5)
     json (1.8.1)
     json_pure (1.8.1)
+    minitest (4.7.5)
     multi_json (1.8.2)
     rack (1.5.2)
     rack-protection (1.5.1)
@@ -80,8 +90,14 @@ GEM
     sinatra-reloader (1.0)
       sinatra-contrib
     stringex (1.5.1)
+    thread_safe (0.1.3)
+      atomic
     tilt (1.4.1)
+    tzinfo (0.3.38)
     uuidtools (2.1.4)
+    whenever (0.8.4)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -91,7 +107,9 @@ DEPENDENCIES
   data_mapper
   dm-sqlite-adapter (>= 1.2.0)
   haml
+  json
   sass
   sinatra
   sinatra-flash
   sinatra-reloader
+  whenever

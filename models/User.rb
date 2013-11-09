@@ -7,11 +7,11 @@ class User
   property :birthday, DateTime
   property :sign,     String
 
-  def correctPassword?(pass)
+  def correct_password?(pass)
     password == Digest::MD5.hexdigest(pass)
   end
 
-  def self.defineSign(date)
+  def self.define_sign(date)
     result = {}
     result["year"], result["month"], result["day"] = date.split(/[^\d]+/)
     date = Date.new(result["year"].to_i, result["month"].to_i, result["day"].to_i)
@@ -41,7 +41,7 @@ class User
       elsif ((Date.new(date.year + 1, 1, 20)..Date.new(date.year + 1, 2, 18)).to_a.include? date)
         sign = "aquarius"
       elsif ((Date.new(date.year + 1, 2, 19)..Date.new(date.year + 1, 3, 20)).to_a.include? date)
-        sig-n = "pisces"
+        sign = "pisces"
       end
     else
       false

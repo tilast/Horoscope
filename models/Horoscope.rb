@@ -15,4 +15,6 @@ class Horoscope
   property  :capricorn,     Text,     :lazy => true
   property  :aquarius,      Text,     :lazy => true
   property  :pisces,        Text,     :lazy => true
+
+  SIGNS = ["aries", "taurus",	"gemini",	"cancer",	"leo", "virgo", "libra", "scorpio",	"sagittarius", "capricorn", "aquarius", "pisces"]
 end

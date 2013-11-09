@@ -3,10 +3,23 @@
   %head
     %title
       #{title}
-    %link{:rel => "stylesheet", :href => "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"}
+    %link{:rel => "stylesheet", :href => "/style.css"}
     %script{:src => "http://code.jquery.com/jquery-1.9.1.js"}
-    %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
-    %script
-      #{datePicker}
+    #{extra_header}
+    %script{:src => '/play.js', :type => 'text/javascript'}
   %body
-    #{content}
+    %div#wrapper
+      %header
+        .title__wrapper
+          %h1.title
+            %a{:href => '/', :class => 'title__link'} Horoscopes everyday
+        .authorization
+          - auth_links.each do |link|
+            %a.authorization__link{:href => link[:url]}=link[:title]
+      %section.content
+        #{content}
+      %footer
+        %span.footer__text
+          (C)
+          %a{:href => "http://github.com/tilast"}tilast
+          , 2013. All rights reserved

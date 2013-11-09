@@ -1,0 +1,11 @@
+.horoscope__wrapper
+  %h2 Horoscope for #{day}
+  %h3 #{sign}:
+  .horoscope=horoscope
+  .horoscope__nav
+    - nav_links.each do |link|
+      %a.horoscope__link_nav{:href => link[:url]}=link[:title]
+  .horoscope__other
+    Watch horoscope for
+    - horoscope_links.each do |link|
+      %a.horoscope__link_other{:href => link[:url]}=link[:title]
