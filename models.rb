@@ -1,9 +1,10 @@
 require 'bundler'
 Bundler.require
 
-empty_db = false
 Dir.mkdir 'tmp' unless File.exists? 'tmp'
-unless File.exists?("#{Dir.pwd}/tmp/test.db") do
+#File.new("#{Dir.pwd}/tmp/test.db", "w") unless File.exists? "#{Dir.pwd}/tmp/test.db"
+empty_db = false
+unless File.exists? "#{Dir.pwd}/tmp/test.db"
   File.new("#{Dir.pwd}/tmp/test.db", "w")
   empty_db = true
 end
