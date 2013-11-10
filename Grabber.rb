@@ -26,7 +26,7 @@ class Grabber
         horoscope[:date] = value
 
         Horoscope::SIGNS.each do |sign|
-          resp = Net::HTTP.get_response(URI.parse(URI.escape("http://widgets.fabulously40.com/horoscope.json?sign=" + sign + "&date=" + value.strftime("%Y-%d-%m"))))
+          resp = Net::HTTP.get_response(URI.parse(URI.escape("http://widgets.fabulously40.com/horoscope.json?sign=" + sign + "&date=" + value.strftime("%Y-%m-%d"))))
           result = JSON.parse(resp.body)
           horoscope[sign.to_sym] = result.empty? ? "Sorry, today we don't have horoscope for you :(" : result["horoscope"]["horoscope"]
         end

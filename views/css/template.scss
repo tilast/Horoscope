@@ -54,7 +54,7 @@ html, body {
   color: rgba(255, 255, 255, 0.7)
 }
 .userBlock {
-  div {
+  .loginForm, .signupForm {
     margin-left: 50px;
     vertical-align: top;
     display: inline-block;
@@ -83,5 +83,7 @@ html, body {
   color: rgba(0, 0, 0, 0.85);
   text-decoration: underline;
 }
-
-
+.errors {
+  color: rgb(200, 30, 10);
+  margin: 0;
+}

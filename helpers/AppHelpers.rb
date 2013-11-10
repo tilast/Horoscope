@@ -76,11 +76,10 @@ module AppHelpers
   end
 
   def get_datepicker
-    "<script type='text/javascript'>$(function() { $('#datepicker').datepicker({ dateFormat: 'yy/mm/dd', showOn: 'button', buttonText: 'Select date', changeYear: true, changeMonth: true,   yearRange: '1950:2012' });});</script>"
+    "<script type='text/javascript'>$(function() { $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd', showOn: 'button', buttonText: 'Select date', changeYear: true, changeMonth: true,   yearRange: '1950:2012' });});</script>"
   end
 
   def get_nav_links(day, sign = "", is_yesterday, is_tomorrow)
-
     sign = !!sign ? "/" + sign : ""
 
     yesterday, today, tomorrow = {:url => "/yesterday" + sign, :title => "Yesterday"}, {:url => "/today" + sign, :title => "Today"}, {:url => "/tomorrow" + sign, :title => "Tomorrow"}
@@ -89,25 +88,25 @@ module AppHelpers
 
     case day
       when "yesterday"
-        result << today
+        result.push(today)
         if is_tomorrow
-          result << tomorrow
+          result.push(tomorrow)
         end
       when "today"
         if is_yesterday
+          result.push(yesterday)
         end
-        result << yesterday
         if is_tomorrow
-          result << tomorrow
+          result.push(tomorrow)
         end
       when "tomorrow"
         if is_yesterday
-          result << yesterday
+          result.push(yesterday)
         end
-        result << today
-      else
-        result = []
+        result.push(today)
     end
+
+    result
   end
 
   def get_auth_links
