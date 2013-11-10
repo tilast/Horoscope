@@ -3,7 +3,7 @@ require "json"
 require 'data_mapper'
 require 'dm-sqlite-adapter'
 require 'dm-migrations'
-require "./Horoscope.rb"
+require "./models/Horoscope.rb"
 require "date"
 
 Dir.mkdir 'tmp' unless File.exists? 'tmp'
