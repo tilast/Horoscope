@@ -6,19 +6,21 @@ require 'dm-migrations'
 require "./models/Horoscope.rb"
 require "date"
 
-Dir.mkdir 'tmp' unless File.exists? 'tmp'
-File.new("#{Dir.pwd}/tmp/test.db", "w") unless File.exists? "#{Dir.pwd}/tmp/test.db"
-
-DataMapper.setup(:default, "sqlite://#{Dir.pwd}/tmp/test.db")
-
-DataMapper.finalize
-DataMapper.auto_upgrade!
-
 class Grabber
   class << self
     def grab
+      Dir.mkdir 'tmp' unless File.exists? 'tmp'
+      File.new("#{Dir.pwd}/tmp/test.db", "w") unless File.exists? "#{Dir.pwd}/tmp/test.db"
+
+      DataMapper.setup(:default, "sqlite://#{Dir.pwd}/tmp/test.db")
+
+      DataMapper.finalize
+      DataMapper.auto_upgrade!
+      simple_grab
+    end
+    def simple_grab
       now = DateTime.now
-      today  = Date.new(now.year, now.month, now.day)
+      today  = Date.new(now.year, now.month, now.day - 4)
       date_range = [today, ((today + 1)..(today + 6)).to_a.take_while { |day| !day.monday? }].flatten
 
       date_range.each do |value|
