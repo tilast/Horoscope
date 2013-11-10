@@ -1,5 +1,5 @@
 require 'bundler'
-require 'Grabber'
+require './Grabber'
 Bundler.require
 
 Dir.mkdir 'tmp' unless File.exists? 'tmp'
