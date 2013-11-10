@@ -20,7 +20,7 @@ class Grabber
     end
     def simple_grab
       now = DateTime.now
-      today  = Date.new(now.year, now.month, now.day - 4)
+      today  = Date.new(now.year, now.month, now.day)
       date_range = [today, ((today + 1)..(today + 6)).to_a.take_while { |day| !day.monday? }].flatten
 
       date_range.each do |value|

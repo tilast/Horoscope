@@ -4,26 +4,26 @@
   .errors.js-signup-errors
     #{flash[:signup_error]}
   %form{:method => "post", :action => "/signup.json"}
-    %p
+    .input-group
       %label
         %span="Login: "
         %br
-        %input{:type => "text", :name => "login", :class => "js-user-login-signup"}
-    %p
+        %input{:type => "text", :name => "login", :class => "form-control js-user-login-signup"}
+    .input-group
       %label
         %span="Password: "
         %br
-        %input{:type => "password", :name => "password", :class => "js-user-password-signup"}
-    %p
+        %input{:type => "password", :name => "password", :class => "form-control js-user-password-signup"}
+    .input-group
       %label
         %span="Password again: "
         %br
-        %input{:type => "password", :name => "password_again", :class => "js-user-password-again-signup"}
-    %p
+        %input{:type => "password", :name => "password_again", :class => "form-control js-user-password-again-signup"}
+    .input-group
       %label
         %span="Birthday(Y/m/d): "
         %br
-        %input{:type => "text", :name => "birthday", :id => "datepicker", :class => "js-user-birthday-signup"}
-    %p
+        %input{:type => "text", :name => "birthday", :id => "datepicker", :class => "form-control js-user-birthday-signup"}
+    .input-group
       %label
-        %input{:type => "submit", :name => "go_signup", :value => "Sign up", :class => "js-signup"}
+        %input{:type => "submit", :name => "go_signup", :value => "Sign up", :class => "btn btn-primary btn-large js-signup"}

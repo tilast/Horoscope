@@ -4,16 +4,16 @@
   .errors.js-login-errors
     #{flash[:login_error]}
   %form{:method => "post", :action => "/login.json"}
-    %p
+    .input-group
       %label
         %span="Login: "
         %br
-        %input{:type => "text", :name => "login", :class => "js-user-login"}
-    %p
+        %input{:type => "text", :name => "login", :class => "form-control js-user-login"}
+    .input-group
       %label
         %span="Password: "
         %br
-        %input{:type => "password", :name => "password", :class => "js-user-password"}
-    %p
+        %input{:type => "password", :name => "password", :class => "form-control js-user-password"}
+    .input-group
       %label
-        %input{:type => "submit", :name => "go_login", :value => "Log in", :class => "js-login"}
+        %input{:type => "submit", :name => "go_login", :value => "Log in", :class => "btn btn-primary btn-large js-login"}
