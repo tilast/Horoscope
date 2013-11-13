@@ -20,21 +20,18 @@ class Grabber
     end
     def simple_grab
       now = DateTime.now
-      today  = Date.new(now.year, now.month, now.day)
-      date_range = [today, ((today + 1)..(today + 6)).to_a.take_while { |day| !day.monday? }].flatten
+      today  = Date.new(now.year, now.month, now.day - 1)
 
-      date_range.each do |value|
-        horoscope = Horoscope.new
-        horoscope[:date] = value
+      horoscope = Horoscope.new
+      horoscope[:date] = today
 
-        Horoscope::SIGNS.each do |sign|
-          resp = Net::HTTP.get_response(URI.parse(URI.escape("http://widgets.fabulously40.com/horoscope.json?sign=" + sign + "&date=" + value.strftime("%Y-%m-%d"))))
-          result = JSON.parse(resp.body)
-          horoscope[sign.to_sym] = result.empty? ? "Sorry, today we don't have horoscope for you :(" : result["horoscope"]["horoscope"]
-        end
-
-        horoscope.save
+      Horoscope::SIGNS.each do |sign|
+        resp = Net::HTTP.get_response(URI.parse(URI.escape("http://widgets.fabulously40.com/horoscope.json?sign=" + sign + "&date=" + today.strftime("%Y-%m-%d"))))
+        result = JSON.parse(resp.body)
+        horoscope[sign.to_sym] = result.empty? ? "Sorry, today we don't have horoscope for you :(" : result["horoscope"]["horoscope"]
       end
+
+      horoscope.save
     end
   end
 end

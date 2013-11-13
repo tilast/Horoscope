@@ -1,3 +1,3 @@
-every :monday do
+every :day do
   rake "startGrabber"
 end
